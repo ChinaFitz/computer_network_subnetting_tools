@@ -5,7 +5,7 @@
                 <Nav/>
             </el-header>
             <el-main>
-                Main
+                <router-view></router-view>
             </el-main>
         </el-container>
     </div>
