@@ -99,6 +99,22 @@
                 return this.binOrdec? 35 : 15
             }
         },
+        watch: {
+            binOrdec: {
+                immediate: true,
+                handler(num) {
+                    this.$nextTick(
+                        ()=> {
+                            if (num) {
+                                this.$refs.el_input.$el.style.width = "300px"
+                            }else {
+                                this.$refs.el_input.$el.style.width = "200px"
+                            }
+                        }
+                    )
+                }
+            }
+        }
     }
 </script>
 
