@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width,
+            initial-scale=1.0,
+            minimum-scale=1.0,
+            maximum-scale=1.0,
+            user-scalable=no"
+        />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    </head>
+    <body>
+        <script>
+            function judgeType(obj) {
+                switch (Object.prototype.toString.call(obj)) {
+                    case '[object String]':
+                        return 'Number'
+                    case '[object Number]':
+                        return 'Number'
+                    case '[object Boolean]':
+                        return 'Boolean'
+                    case '[object Null]':
+                        return 'Null'
+                    case '[object Undefined]':
+                        return 'Undefined'
+                    case '[object Array]':
+                        return 'Array'
+                    case '[object Object]':
+                        return 'Object'
+                    case '[object Function]':
+                        return 'Function'
+                    case '[object Symbol]':
+                        return 'Symbol'
+                    case '[object Set]':
+                        return 'Set'
+                    case '[object Map]':
+                        return 'Map'
+                }
+            }
+        </script>
+
+        <script>
+            
+        </script>
+    </body>
+</html>

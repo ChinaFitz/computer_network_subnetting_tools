@@ -43,5 +43,9 @@
         height: 100%;
         font-size: 20px;
         margin-top: 14%;
+
+        > div {
+            margin: 10px 0;
+        }
     }
 </style>
