@@ -36,8 +36,19 @@
 
         <el-divider></el-divider>
 
-        <div>
-            所有需要计算的项目
+        <div id="details">
+            <el-descriptions :column="1" border>
+                
+                <el-descriptions-item
+                    v-for="(item, index) in details" :key="index"
+                    :labelStyle="{ 'text-align': 'center', 'background-color': index%2===0?'#E1F3D8':'#DCDCDC', 'font-size': '14px', 'color': 'black' }"
+                    :contentStyle="{ 'text-align': 'center', 'background-color': index%2===0?'#E1F3D8':'#DCDCDC', 'font-size': '14px', 'color': 'black' }"
+                    :label="item.label"
+                >
+                    {{ item.result }}
+                </el-descriptions-item>
+            
+            </el-descriptions>
         </div>
     </div>
 </template>
@@ -45,11 +56,70 @@
 <script>
     import { mapGetters } from 'vuex'
     import utils from '../utils'
+
     export default {
         name: 'IpDetail', // 指定组件名
         data: function() {
             return {
                 advices: [],
+                details: [
+                    {
+                        label: "iP地址的二进制形式:",
+                        result: null,
+                    },
+                    {
+                        label: "iP地址分类:",
+                        result: null
+                    },
+                    {
+                        label: "子网号位数:",
+                        result: null
+                    },
+                    {
+                        label: "可用子网数(子网号全为0或1会冲突):",
+                        result: null
+                    },
+                    {
+                        label: "新路由器的可用子网数(子网号全为0或1不再冲突):",
+                        result: null
+                    },
+                    {
+                        label: "主机号位数:",
+                        result: null
+                    },
+                    {
+                        label: "主机号(10进制):",
+                        result: null
+                    },
+                    {
+                        label: "主机号(2进制):",
+                        result: null
+                    },
+                    {
+                        label: "主机数:",
+                        result: null
+                    },
+                    {
+                        label: "可用主机数:",
+                        result: null
+                    },
+                    {
+                        label: "网络地址(10进制):",
+                        result: null
+                    },
+                    {
+                        label: "网络地址(2进制):",
+                        result: null
+                    },
+                    {
+                        label: "主机地址范围(子网不参与计算)(10进制):",
+                        result: null
+                    },
+                    {
+                        label: "主机地址范围(子网不参与计算)(2进制):",
+                        result: null
+                    },
+                ],
             }
         },
         mounted() {
@@ -74,6 +144,11 @@
             // 子网掩码自动填充用
         },
         computed: {
+
+            ...mapGetters([
+                "convert_ip_address",
+            ]),
+
             ip_address: {
                 get() {
                     return this.$store.state.ip_address
@@ -116,7 +191,7 @@
                     this.$store.state.ip_address = ''
                     this.$store.state.binOrdec = val
                     if (val) {
-                        this.$refs.el_input.$el.style.width = '300px'
+                        this.$refs.el_input.$el.style.width = '330px'
                     } else {
                         this.$refs.el_input.$el.style.width = '200px'
                     }
@@ -160,16 +235,27 @@
         watch: {
             binOrdec: {
                 immediate: true,
-                handler(num) {
+                handler(bool) {
                     this.$nextTick(() => {
-                        if (num) {
-                            this.$refs.el_input.$el.style.width = '300px'
+                        if (bool) {
+                            this.$refs.el_input.$el.style.width = '330px'
+                            // 输入为二进制时, 显示十进制结果
+                            this.details[0].label = "iP地址的十进制形式:"
                         } else {
                             this.$refs.el_input.$el.style.width = '200px'
+                            // 输入为十进制时, 显示二进制结果
+                            this.details[0].label = "iP地址的二进制形式:"
                         }
                     })
                 },
             },
+            convert_ip_address: {
+                immediate: true,
+                handler(val) {
+                    this.details[0].result = val
+                },
+            },
+
         },
     }
 </script>
@@ -177,5 +263,14 @@
 <style lang="less" scoped>
     .el-input {
         margin: 20px 0;
+    }
+
+    #details {
+        width: 65%;
+        margin: 0 auto;
+    }
+
+    .el-descriptions-item_cell {
+        background-color: red!important;
     }
 </style>

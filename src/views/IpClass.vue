@@ -87,7 +87,7 @@
                     this.$store.state.ip_address = ""
                     this.$store.state.binOrdec = val
                     if (val) {
-                        this.$refs.el_input.$el.style.width = "300px"
+                        this.$refs.el_input.$el.style.width = "330px"
                     }else {
                         this.$refs.el_input.$el.style.width = "200px"
                     }
@@ -102,11 +102,11 @@
         watch: {
             binOrdec: {
                 immediate: true,
-                handler(num) {
+                handler(bool) {
                     this.$nextTick(
                         ()=> {
-                            if (num) {
-                                this.$refs.el_input.$el.style.width = "300px"
+                            if (bool) {
+                                this.$refs.el_input.$el.style.width = "330px"
                             }else {
                                 this.$refs.el_input.$el.style.width = "200px"
                             }
