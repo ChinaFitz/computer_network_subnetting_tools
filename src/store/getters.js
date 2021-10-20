@@ -37,5 +37,13 @@ export default {
         if (ipClass === undefined || subnet_mask === "") return
         return utils.bits_of_subnet(ipClass, subnet_mask)
     },
+
+
+    // 可用子网数 (结果包含: 新版路由器 + 旧版路由器)
+    num_of_subnet(state, getters) {
+        let {bits_of_subnet} = getters
+        if (bits_of_subnet === undefined) return
+        return utils.num_of_subnet(bits_of_subnet)
+    },
     // ======================= 路由2: IP地址详情 (需要子网掩码) ========================
 }

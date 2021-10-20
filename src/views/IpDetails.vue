@@ -149,6 +149,7 @@
                 "convert_ip_address",
                 "ipClass",
                 "bits_of_subnet",
+                "num_of_subnet",
             ]),
 
             ip_address: {
@@ -268,6 +269,13 @@
                 immediate: true,
                 handler(num) {
                     this.details[2].result = num
+                }
+            },
+            num_of_subnet: {
+                immediate: true,
+                handler(obj) {
+                    this.details[3].result = obj.old_router
+                    this.details[4].result = obj.new_router
                 }
             },
 
