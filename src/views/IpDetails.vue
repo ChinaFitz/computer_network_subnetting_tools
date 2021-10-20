@@ -147,6 +147,7 @@
 
             ...mapGetters([
                 "convert_ip_address",
+                "ipClass",
             ]),
 
             ip_address: {
@@ -231,6 +232,7 @@
                     }
                 },
             },
+
         },
         watch: {
             binOrdec: {
@@ -255,6 +257,12 @@
                     this.details[0].result = val
                 },
             },
+            ipClass: {
+                immediate: true,
+                handler(c) {
+                    this.details[1].result = c ? `${c}类地址` : null
+                }
+            }
 
         },
     }
