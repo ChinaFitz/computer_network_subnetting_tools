@@ -28,5 +28,14 @@ export default {
             return utils.bin_ip_address(ip_address)
         }
     },
+
+    // 2. 子网号位数
+    bits_of_subnet(state, getters) {
+        let {subnet_mask} = state
+        let {ipClass} = getters
+
+        if (ipClass === undefined || subnet_mask === "") return
+        return utils.bits_of_subnet(ipClass, subnet_mask)
+    },
     // ======================= 路由2: IP地址详情 (需要子网掩码) ========================
 }

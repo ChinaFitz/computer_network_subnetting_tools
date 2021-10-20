@@ -148,6 +148,7 @@
             ...mapGetters([
                 "convert_ip_address",
                 "ipClass",
+                "bits_of_subnet",
             ]),
 
             ip_address: {
@@ -262,7 +263,13 @@
                 handler(c) {
                     this.details[1].result = c ? `${c}类地址` : null
                 }
-            }
+            },
+            bits_of_subnet: {
+                immediate: true,
+                handler(num) {
+                    this.details[2].result = num
+                }
+            },
 
         },
     }

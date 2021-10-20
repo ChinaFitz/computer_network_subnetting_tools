@@ -7,6 +7,8 @@ import judgeType from "./judgeType"
 import patchZero from "./pretty/patchZero"
 import bin_ip_address from "./ip_related/bin_ip_address"
 import dec_ip_address from "./ip_related/dec_ip_address"
+import standard_mask from "./mask_related/standard_mask"
+import bits_of_subnet from "./subnet_related/bits_of_subnet"
 
 export default {
     bin2dec,
@@ -18,4 +20,6 @@ export default {
     bin_ip_address,
     address_joiner,
     dec_ip_address,
+    standard_mask,
+    bits_of_subnet,
 }
