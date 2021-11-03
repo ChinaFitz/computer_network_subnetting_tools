@@ -2,7 +2,7 @@
     @author:  Fitz
     @name:  bits_of_subnet
     @description:  根据ip地址的类型和子网掩码计算出子网号位数
-    @parms:  String ip地址,  String 子网掩码
+    @parms:  String ip地址类型,  String 子网掩码
     @return:  Number 子网号位数
 */
 
@@ -24,7 +24,7 @@ export default function (ipClass, mask) {
     )
 
     // 只取子网掩码会出现片段
-    mask_dec_arr = mask_dec_arr.slice(flag, this.length)
+    mask_dec_arr = mask_dec_arr.slice(flag, mask_dec_arr.length)
     
     mask_dec_arr.forEach(
         fragment => {

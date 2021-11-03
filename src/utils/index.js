@@ -10,6 +10,8 @@ import dec_ip_address from "./ip_related/dec_ip_address"
 import standard_mask from "./mask_related/standard_mask"
 import bits_of_subnet from "./subnet_related/bits_of_subnet"
 import num_of_subnet from "./subnet_related/num_of_subnet"
+import standard_host_number from "./ip_related/standard_host_number"
+import bits_of_hosts from "./subnet_related/bits_of_hosts"
 
 export default {
     bin2dec,
@@ -24,4 +26,6 @@ export default {
     standard_mask,
     bits_of_subnet,
     num_of_subnet,
+    standard_host_number,
+    bits_of_hosts,
 }

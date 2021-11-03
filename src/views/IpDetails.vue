@@ -150,6 +150,7 @@
                 "ipClass",
                 "bits_of_subnet",
                 "num_of_subnet",
+                "bits_of_hosts",
             ]),
 
             ip_address: {
@@ -278,7 +279,12 @@
                     this.details[4].result = obj.new_router
                 }
             },
-
+            bits_of_hosts: {
+                immediate: true,
+                handler(num) {
+                    this.details[5].result = num
+                }
+            }
         },
     }
 </script>
