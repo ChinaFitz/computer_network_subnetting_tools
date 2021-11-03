@@ -153,6 +153,8 @@
                 "bits_of_hosts",
                 "host_number_in_dec",
                 "host_number_in_bin",
+                "hosts",
+                "useful_hosts",
             ]),
 
             ip_address: {
@@ -297,6 +299,18 @@
                 immediate: true,
                 handler(num) {
                     this.details[7].result = num
+                }
+            },
+            hosts: {
+                immediate: true,
+                handler(num) {
+                    this.details[8].result = num
+                }
+            },
+            useful_hosts: {
+                immediate: true,
+                handler(num) {
+                    this.details[9].result = num
                 }
             },
         },

@@ -143,5 +143,50 @@ export default {
             return
         }
     },
+
+    // 8. 主机数
+    hosts(state, getters) {
+        try {
+            let {bits_of_hosts} = getters
+            if (bits_of_hosts > 0) {
+                return 2 ** bits_of_hosts
+            }else if(bits_of_hosts === undefined){
+                return
+            }else {
+                return 0
+            }
+        } catch (error) {
+            Message({
+                message: "请仔细检查ip地址和子网掩码是否有错误!",
+                type: "error",
+                duration: 1500,
+            })
+            return
+        }
+    },
+
+
+    // 9. 可用主机数
+    useful_hosts(state, getters) {
+        try {
+            let hosts = getters.hosts
+            if (hosts > 0) {
+                return hosts - 2
+            }else if(hosts === undefined){
+                return
+            }else {
+                return 0
+            }
+        } catch (error) {
+            Message({
+                message: "请仔细检查ip地址和子网掩码是否有错误!",
+                type: "error",
+                duration: 1500,
+            })
+            return
+        }
+    },
+
+    
     // ======================= 路由2: IP地址详情 (需要子网掩码) ========================
 }
