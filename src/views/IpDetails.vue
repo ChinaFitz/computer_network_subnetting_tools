@@ -151,6 +151,8 @@
                 "bits_of_subnet",
                 "num_of_subnet",
                 "bits_of_hosts",
+                "host_number_in_dec",
+                "host_number_in_bin",
             ]),
 
             ip_address: {
@@ -284,7 +286,19 @@
                 handler(num) {
                     this.details[5].result = num
                 }
-            }
+            },
+            host_number_in_dec: {
+                immediate: true,
+                handler(num) {
+                    this.details[6].result = num
+                }
+            },
+            host_number_in_bin: {
+                immediate: true,
+                handler(num) {
+                    this.details[7].result = num
+                }
+            },
         },
     }
 </script>

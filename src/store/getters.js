@@ -104,6 +104,44 @@ export default {
         }
     },
 
+    // 6. 主机号(10进制)
+    host_number_in_dec(state, getters) {
+        try {
+            let result = utils.address_spliter(getters.host_number_in_bin).map(
+                fragment => utils.bin2dec(fragment)
+            )
+            return utils.address_joiner(result)
+        } catch (error) {
+            Message({
+                message: "请仔细检查ip地址和子网掩码是否有错误!",
+                type: "error",
+                duration: 1500,
+            })
+            return
+        }
+    },
 
+    // 7. 主机号(2进制)
+    host_number_in_bin(state, getters) {
+        try {
+            let {binOrdec, subnet_mask: mask} = state
+            if (binOrdec) {
+                var ip = state.ip_address
+            }else {
+                var ip = getters.convert_ip_address
+            }
+
+            if (ip === "" || mask === "") return
+
+            return utils.host_number_in_bin(ip, mask)
+        } catch (error) {
+            Message({
+                message: "请仔细检查ip地址和子网掩码是否有错误!",
+                type: "error",
+                duration: 1500,
+            })
+            return
+        }
+    },
     // ======================= 路由2: IP地址详情 (需要子网掩码) ========================
 }
