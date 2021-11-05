@@ -125,6 +125,7 @@ export default {
     host_number_in_bin(state, getters) {
         try {
             let {binOrdec, subnet_mask: mask} = state
+            
             if (binOrdec) {
                 var ip = state.ip_address
             }else {
@@ -187,6 +188,46 @@ export default {
         }
     },
 
-    
+    // 10. 网络地址(10进制)
+    network_address_dec(state, getters) {
+        try {
+            let {network_address_bin} = getters
+            return utils.dec_ip_address(network_address_bin)
+        } catch (error) {
+            Message({
+                message: "请仔细检查ip地址和子网掩码是否有错误!",
+                type: "error",
+                duration: 1500,
+            })
+            return
+        }
+    },
+
+    // 11. 网络地址(2进制)
+    network_address_bin(state, getters) {
+        try {
+            let {ip_address, subnet_mask, binOrdec} = state
+            if (ip_address === "" || subnet_mask === "") return
+            
+
+            if (!binOrdec) {
+                ip_address = getters.convert_ip_address
+            }
+
+            let subnet_mask_arr = utils.bin_ip_address(subnet_mask)
+
+            return utils.AND_operation(ip_address, subnet_mask_arr)
+
+        } catch (error) {
+            Message({
+                message: "请仔细检查ip地址和子网掩码是否有错误!",
+                type: "error",
+                duration: 1500,
+            })
+            return
+        }
+    },
+
+
     // ======================= 路由2: IP地址详情 (需要子网掩码) ========================
 }

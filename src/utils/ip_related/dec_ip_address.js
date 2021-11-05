@@ -3,7 +3,7 @@ import utils from "../index"
 /*
     @author:  Fitz
     @name:  bin_ip_address
-    @description:  将二进制的ip地址转换为十进制
+    @description:  将二进制的ip地址转换为十进制, 也可用于子网掩码
     @parms:  String 二进制ip地址
     @return:  String 十进制ip地址
 */

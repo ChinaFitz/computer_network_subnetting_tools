@@ -112,11 +112,11 @@
                         result: null
                     },
                     {
-                        label: "主机地址范围(子网不参与计算)(10进制):",
+                        label: "主机地址范围(不考虑子网划分)(10进制):",
                         result: null
                     },
                     {
-                        label: "主机地址范围(子网不参与计算)(2进制):",
+                        label: "主机地址范围(不考虑子网划分)(2进制):",
                         result: null
                     },
                 ],
@@ -155,6 +155,8 @@
                 "host_number_in_bin",
                 "hosts",
                 "useful_hosts",
+                "network_address_dec",
+                "network_address_bin",
             ]),
 
             ip_address: {
@@ -311,6 +313,18 @@
                 immediate: true,
                 handler(num) {
                     this.details[9].result = num
+                }
+            },
+            network_address_dec: {
+                immediate: true,
+                handler(address) {
+                    this.details[10].result = address
+                }
+            },
+            network_address_bin: {
+                immediate: true,
+                handler(address) {
+                    this.details[11].result = address
                 }
             },
         },
