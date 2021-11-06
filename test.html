@@ -17,7 +17,7 @@
             function judgeType(obj) {
                 switch (Object.prototype.toString.call(obj)) {
                     case '[object String]':
-                        return 'Number'
+                        return 'String'
                     case '[object Number]':
                         return 'Number'
                     case '[object Boolean]':
@@ -40,10 +40,62 @@
                         return 'Map'
                 }
             }
+
+
+
+
+            function patchZero(bin) {
+                let bin_arr = bin.split('')
+                let len = bin_arr.length
+
+                if (len === 8) {
+                    return bin
+                }
+                while (len < 8) {
+                    bin_arr.unshift('0')
+                    len = bin_arr.length
+                }
+                return bin_arr.join('')
+            }
+
+
+
+
+            function dec2bin(dec_String) {
+                let target
+                let bin_string = ''
+                let result = []
+                
+                if (judgeType(dec_String) === 'Number') {
+                    target = dec_String
+                } else {
+                    target = Number(dec_String)
+                }
+
+                if (Number.isNaN(target) || judgeType(target) === "Undefined") {
+                    target = 0
+                    result.push(target)
+                }
+                
+
+                while (target !== 0) {
+                    let remainder = target % 2
+                    target = parseInt(target / 2)
+                    result.unshift(remainder)
+                }
+            
+
+                result.forEach(digit => {
+                    bin_string += digit
+                })
+
+                return bin_string
+            }
+
         </script>
 
         <script>
-
+            
         </script>
     </body>
 </html>

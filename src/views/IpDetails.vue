@@ -157,6 +157,8 @@
                 "useful_hosts",
                 "network_address_dec",
                 "network_address_bin",
+                "host_address_dec",
+                "host_address_bin",
             ]),
 
             ip_address: {
@@ -325,6 +327,18 @@
                 immediate: true,
                 handler(address) {
                     this.details[11].result = address
+                }
+            },
+            host_address_dec: {
+                immediate: true,
+                handler(address) {
+                    this.details[12].result = address
+                }
+            },
+            host_address_bin: {
+                immediate: true,
+                handler(address) {
+                    this.details[13].result = address
                 }
             },
         },

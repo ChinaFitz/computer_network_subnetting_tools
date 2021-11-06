@@ -14,6 +14,8 @@ import standard_host_number from "./ip_related/standard_host_number"
 import bits_of_hosts from "./subnet_related/bits_of_hosts"
 import host_number_in_bin from "./subnet_related/host_number_in_bin"
 import AND_operation from "./AND_operation"
+import host_address_dec from "./subnet_related/host_address_dec"
+import throttle from "./throttle"
 
 export default {
     bin2dec,
@@ -32,4 +34,6 @@ export default {
     bits_of_hosts,
     host_number_in_bin,
     AND_operation,
+    host_address_dec,
+    throttle,
 }

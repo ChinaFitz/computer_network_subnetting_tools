@@ -4,7 +4,7 @@ import utils from "../index"
     @author:  Fitz
     @name:  ipClassifier
     @description:  ip地址分类器
-    @parms:  String 二进制的ip地址, Bool 二/十进制
+    @parms:  String ip地址, Bool ip地址的进制(false=>十进制    true=>二进制)
     @return:  String 分类(A-E)
 */
 export default function (ip, binOrdec) {

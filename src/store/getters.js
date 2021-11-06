@@ -228,6 +228,49 @@ export default {
         }
     },
 
+    // 12. 主机地址范围(10进制)
+    host_address_dec(state, getters) {
+        try {
+            let {ip_address, subnet_mask, binOrdec, throttle_timer} = state
+            let {network_address_dec} = getters
+            if (ip_address === "" || subnet_mask === "") return
+
+            let cb_after_throttle = utils.throttle(utils.host_address_dec, 1500, throttle_timer, network_address_dec, binOrdec)
+            let {from: begin, to: end} = cb_after_throttle()
+            return `${begin} ~ ${end}`
+
+        } catch (error) {
+            Message({
+                message: "请仔细检查ip地址和子网掩码是否有错误!",
+                type: "error",
+                duration: 1500,
+            })
+            console.log(error)
+            return
+        }
+    },
+    // 13. 主机地址范围(2进制)
+    host_address_bin(state, getters) {
+        try {
+            let {ip_address, subnet_mask, binOrdec, throttle_timer} = state
+            let {network_address_dec} = getters
+            if (ip_address === "" || subnet_mask === "") return
+
+            let cb_after_throttle = utils.throttle(utils.host_address_dec, 1500, throttle_timer, network_address_dec, binOrdec)
+            let {from: begin, to: end} = cb_after_throttle()
+
+            return `${utils.bin_ip_address(begin)} ~ ${utils.bin_ip_address(end)}`
+
+        } catch (error) {
+            Message({
+                message: "请仔细检查ip地址和子网掩码是否有错误!",
+                type: "error",
+                duration: 1500,
+            })
+            console.log(error)
+            return
+        }
+    },
 
     // ======================= 路由2: IP地址详情 (需要子网掩码) ========================
 }
