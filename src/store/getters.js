@@ -245,7 +245,6 @@ export default {
                 type: "error",
                 duration: 1500,
             })
-            console.log(error)
             return
         }
     },
@@ -267,10 +266,53 @@ export default {
                 type: "error",
                 duration: 1500,
             })
-            console.log(error)
             return
         }
     },
 
     // ======================= 路由2: IP地址详情 (需要子网掩码) ========================
+
+
+
+    // ======================= 路由3: 判断两个ip是否属于同一个网络 ======================
+    calc_network_address() {
+        return function (ip_address, subnet_mask) {
+            try {
+                
+                if (ip_address === "" || subnet_mask === "") return
+    
+                // 将ip转为二进制
+                let ip_address_bin = utils.patchZero(utils.bin_ip_address(ip_address))
+    
+                // 将子网掩码转为二进制
+                let subnet_mask_arr = utils.bin_ip_address(subnet_mask)
+    
+                let network_address_dec = utils.dec_ip_address(utils.AND_operation(ip_address_bin, subnet_mask_arr))
+                 
+                 return network_address_dec
+    
+            } catch (error) {
+                Message({
+                    message: "请仔细检查ip地址和子网掩码是否有错误!",
+                    type: "error",
+                    duration: 1500,
+                })
+                return
+            }
+        }
+    },
+    network_address_1(state, getters) {
+        let {ip_address, subnet_mask} = state
+        let {calc_network_address} = getters
+
+        return calc_network_address(ip_address, subnet_mask)
+    },
+    network_address_2(state, getters) {
+        let {ip_address2, subnet_mask2} = state
+        let {calc_network_address} = getters
+
+        return calc_network_address(ip_address2, subnet_mask2)
+    },
+
+    // ======================= 路由3: 判断两个ip是否属于同一个网络 ======================
 }
