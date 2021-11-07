@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="miss_subnet_type" v-if="!subnet_type">
+        <div id="miss_subnet_type" v-if="subnet_type === '0'">
             <el-empty description="请在上一步中选择一种问题类型"></el-empty>
             <el-button style="margin-top: 12px;" @click="pre">上一步</el-button>
         </div>
@@ -56,17 +56,9 @@
         },
         computed: {
             ...mapState([
+                "subnet_type",
                 "binOrdec",
             ]),
-
-            subnet_type: {
-                get() {
-                    return this.$store.state.subnet_type
-                },
-                set(type) {
-                    this.$store.state.subnet_type = type
-                },
-            },
 
             ip_address: {
                 get() {

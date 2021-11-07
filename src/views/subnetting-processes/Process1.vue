@@ -27,13 +27,13 @@
                     return this.$store.state.subnet_type
                 },
                 set(type) {
-                    this.$store.state.subnet_type = type
+                    this.$store.state.subnet_type = type    // type是String类型
                 },
             },
         },
         methods: {
             next(subnet_type) {
-                if (subnet_type === 0) {
+                if (subnet_type === "0") {
                     alert("请选择一种子网划分问题的类型")
                 }else {
                     // this.$store.state.active = 1     // subnetting.vue中加入了url path监听, 所以不再需要
