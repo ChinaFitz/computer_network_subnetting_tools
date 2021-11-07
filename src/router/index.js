@@ -9,6 +9,9 @@ import IpDetails from "../views/IpDetails.vue"
 import IsSameNet from "../views/IsSameNet.vue"
 import NetConfigGen from "../views/NetConfigGen.vue"
 import Subnetting from "../views/Subnetting.vue"
+import Process1 from "../views/subnetting-processes/Process1"
+import Process2 from "../views/subnetting-processes/Process2"
+import Process3 from "../views/subnetting-processes/Process3"
 
 const routes = [
     {
@@ -35,6 +38,24 @@ const routes = [
         name: "Subnetting",
         path: "/subnetting",
         component: Subnetting,
+        redirect: "/subnetting/process1",
+        children: [
+            {
+                name: "Process1",
+                path: "process1",
+                component: Process1,
+            },
+            {
+                name: "Process2",
+                path: "process2",
+                component: Process2,
+            },
+            {
+                name: "Process3",
+                path: "process3",
+                component: Process3,
+            },
+        ],
     },
     {
         name: "NetConfigGen",

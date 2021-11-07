@@ -19,31 +19,31 @@
             return {
                 navs: [
                     {
-                        index: 'helloPage',
+                        index: '/helloPage',
                         title: '计算机网络工具',
                         subtitle: '',
                     },
                     {
-                        index: 'ipClass',
+                        index: '/ipClass',
                         title: '判断IP地址类型',
                     },
                     {
-                        index: 'ipDetails',
+                        index: '/ipDetails',
                         title: 'IP地址详情',
                         subtitle: '(需要子网掩码)',
                     },
                     {
-                        index: 'isSameNet',
+                        index: '/isSameNet',
                         title: '判断两个IP是否属于同一个网络',
                         subtitle: '',
                     },
                     {
-                        index: 'subnetting',
+                        index: '/subnetting',
                         title: '子网划分',
                         subtitle: '',
                     },
                     {
-                        index: 'netConfigGen',
+                        index: '/netConfigGen',
                         title: '局域网配置生成器',
                         subtitle: '',
                     },
