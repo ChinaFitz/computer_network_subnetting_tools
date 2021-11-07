@@ -7,6 +7,8 @@ export default {
     subnet_mask2: "", // <判断两ip是否属于同一个网络>路由专用
     binOrdec: false,    // false为10进制, true为2进制
     throttle_timer: null,
+    
+    
     // ======================== 路由4(子网划分)  开始 ========================
     active: 0,  // 子网划分的步骤条
     subnet_type: 0,  // 子网划分的问题类型, 总共有4种

@@ -43,7 +43,6 @@
                     this.$store.state.active++
                     this.$router.push({name: "Process2"})
                 }
-                console.log("问题类型:", subnet_type)
             },
         },
     }
@@ -52,15 +51,18 @@
 
 <style lang="less" scoped>
     #known_conditions {
-        width: 100%;
-        height: auto;
+        width: 30%;
         margin: 50px auto;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
         .el-radio {
-            width: 33%;
-            display: block;
-            margin: 0 auto;
             margin-bottom: 20px;
             text-align: start;
+            &:first-child {
+                margin-left: 10px;
+            }
         }
     }
     
