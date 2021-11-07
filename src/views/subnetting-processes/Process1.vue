@@ -22,10 +22,6 @@
             }
         },
         computed: {
-            // ...mapState([
-            //     "",
-            // ]),
-
             subnet_type: {
                 get() {
                     return this.$store.state.subnet_type
@@ -33,18 +29,19 @@
                 set(type) {
                     this.$store.state.subnet_type = type
                 },
-            }
+            },
         },
         methods: {
             next(subnet_type) {
-                if (this.subnet_type === 0) {
+                if (subnet_type === 0) {
                     alert("请选择一种子网划分问题的类型")
                 }else {
-                    this.$store.state.active++
+                    // this.$store.state.active = 1     // subnetting.vue中加入了url path监听, 所以不再需要
                     this.$router.push({name: "Process2"})
                 }
             },
         },
+       
     }
 
 </script>

@@ -12,30 +12,47 @@
             <keep-alive>
                 <router-view></router-view>
             </keep-alive>
-        </div>        
+        </div>
     </div>
 </template>
 
-
 <script>
-    import {mapState} from "vuex"
+    import { mapState } from 'vuex'
 
     export default {
-        name: "Subnetting", // 指定组件名
-        data: function () {
-            return {
-
-            }
+        name: 'Subnetting', // 指定组件名
+        data: function() {
+            return {}
         },
         computed: {
-            ...mapState([
-                "active"
-            ]),
-        }
+            ...mapState(['active']),
+        },
+        watch: {
+            $route: {
+                immediate: true,
+                deep: true,
+                handler({ name }) {
+                    switch (name) {
+                        case 'Process1':
+                            this.$store.state.active = 0
+                            break
+                        case 'Process2':
+                            this.$store.state.active = 1
+                            break
+                        case 'Process3':
+                            this.$store.state.active = 3
+                            break
+                    }
+                },
+            },
+        },
     }
-
 </script>
 
 <style lang="less" scoped>
-
+    #figure {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 </style>

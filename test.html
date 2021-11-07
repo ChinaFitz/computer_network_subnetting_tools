@@ -95,7 +95,27 @@
         </script>
 
         <script>
-            
+            var a = {
+                a1: "haha",
+                a2: 21,
+            }
+
+            var b = {
+                name: "fitz",
+                age: 999,
+                ...a,
+            }
+
+            // console.log(b)
+
+            var c = {
+                c: 777
+            }
+
+            // var aaa = Object.assign(b, c)
+            var aaa = Object.assign(c,b)
+            console.log(aaa)
+            console.log(b)
         </script>
     </body>
 </html>
