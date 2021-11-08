@@ -21,7 +21,7 @@
                 ></el-input>
             </div>
 
-            <div class="conditions_group">
+            <div class="conditions_group" v-if="subnet_type === '1' || subnet_type === '2'">
                 <span style="margin-right: 20px;">
                     子网掩码(仅支持十进制):
                 </span>
@@ -35,6 +35,20 @@
                     :clearable="true"
                     size="small"
                 ></el-autocomplete>
+            </div>
+
+            <div class="conditions_group" v-else-if="subnet_type === '3'">
+                <span>所需子网个数:</span>
+                <el-input
+                    type="text"
+                    placeholder="所需子网个数"
+                    v-model.number="required_subnets_num"
+                    :maxlength="15"
+                    show-word-limit
+                    :clearable="true"
+                    size="small"
+                    :style="{ marginLeft: '21px', width: '200px' }"
+                ></el-input>
             </div>
 
             <div class="conditions_group">
@@ -129,6 +143,23 @@
                     }
                 },
             },
+
+            required_subnets_num: {
+                get() {
+                    return this.$store.state.required_subnets_num
+                },
+                set(num) {
+                    // 清空
+                    if (num === "") {
+                        this.$store.state.required_subnets_num = ""
+                    }else if (num < 1){
+                        this.$store.state.required_subnets_num = 1
+                        alert("所需子网数要大于等于1")
+                    }else {
+                        this.$store.state.required_subnets_num = num
+                    }
+                }
+            }
         },
         methods: {
             // 子网掩码自动填充用
@@ -154,6 +185,10 @@
             },
             next() {
                 // this.$store.state.active = 2     // subnetting.vue中加入了url path监听, 所以不再需要
+                if (!this.ip_address || !this.required_subnets_num) {
+                    alert("请检查是否漏掉必要的两个条件")
+                    return
+                }
                 this.$router.push({ name: 'Process3' })
             },
         },

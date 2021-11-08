@@ -34,12 +34,33 @@
         </div>
 
         <div id="type3" v-else-if="subnet_type === '3'">
-            3号问题
+            <el-table
+                :data="type3_dataTable[0]"
+                border stripe 
+                style="width: 100%"
+                :header-cell-style="{backgroundColor: '#ffeead', color: '#d9534f'}"
+            >
+                <el-table-column prop="ip" label="分配到的网络ip" width="180" align="center"></el-table-column>
+                <el-table-column prop="required_subnets_num" label="所需子网个数" align="center"></el-table-column>
+            </el-table>
+
+            <el-table
+                :data="type3_dataTable[1]"
+                border stripe 
+                style="width: 100%"
+                :header-cell-style="{color: 'rgb(224, 44, 44)'}"
+            >
+                <el-table-column prop="serial_num" label="子网序号" width="180" align="center"></el-table-column>
+                <el-table-column prop="mask" label="子网掩码" width="180" align="center"></el-table-column>
+                <el-table-column prop="the_scale_of_host_address" label="主机地址范围(第一个地址可做该子网的网络地址)" width="325" align="center"></el-table-column>
+            </el-table>
         </div>
 
         <div id="type4" v-else-if="subnet_type === '4'">
             4号问题
         </div>
+
+
 
         <div id="miss_subnet_type" v-else>
             <el-empty description="请在步骤1中选择一种问题类型"></el-empty>
@@ -67,7 +88,7 @@
             ...mapGetters([
                 'type1_network_address',
                 'type2_dataTable',
-                "tt"
+                "type3_dataTable"
                 ]),
         },
         methods: {
@@ -83,9 +104,15 @@
         display: block;
     }
 
-    #type2 {
-        .el-table {
-            margin: 40px auto;
+    #set_type_style(@num) {
+        #type@{num} {
+            .el-table {
+                margin: 40px auto;
+            }
         }
     }
+
+    each(range(1, 4, 1), #(@the_num){
+        #set_type_style(@the_num);
+    });
 </style>

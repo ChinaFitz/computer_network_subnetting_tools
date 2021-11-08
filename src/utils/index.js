@@ -17,7 +17,7 @@ import AND_operation from "./AND_operation"
 import host_address_dec from "./subnet_related/host_address_dec"
 import throttle from "./throttle"
 import bit_combination_generator from "./bit_combination_generator"
-import arr_vector_one_to_two from "./array_vector/one_to_tow"
+import arr_vector_one_to_two from "./array_vector/one_to_two"
 
 export default {
     bin2dec,

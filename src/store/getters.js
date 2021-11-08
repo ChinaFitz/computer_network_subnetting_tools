@@ -439,6 +439,63 @@ export default {
         let { calc_the_num_of_subnets_and_its_network_address } = getters
         return calc_the_num_of_subnets_and_its_network_address(ip_address, subnet_mask)
     },
-    // =================== 问题3: aa =================
+    // =================== 问题3: 已知网络IP地址、所需子网个数求每个子网的子网掩码及对应的主机地址范围 =================
+    type3_dataTable(state, getters) {
+        let { ip_address: ip, required_subnets_num } = state
+        let {calc_the_num_of_subnets_and_its_network_address} = getters
+
+
+        let final_results = [
+            [
+                {
+                    ip,
+                    required_subnets_num,
+                }
+            ],
+        ]
+        
+        // 子网掩码需要用于做子网号的bit数
+        let required_bit = Math.ceil(Math.log2(required_subnets_num))
+
+        const ipClass = utils.ipClassifier(ip)
+        const flag = utils.standard_mask[ipClass]["flag"]
+
+        // 子网掩码计算结果将基于这个变量进行修改
+        let temp_mask_bin_arr = utils.address_spliter(utils.bin_ip_address(utils.standard_mask[ipClass]["mask"]))    // 该数组是2进制形式的标准子网掩码
+        temp_mask_bin_arr.splice(flag)
+
+
+        var patcher = []
+        for (let i = 0; i < required_bit; i++) {
+            patcher.push("1")
+        }
+        
+        while ((4 - temp_mask_bin_arr.length) * 8 !== patcher.length) {
+            patcher.push("0")
+        }
+
+        patcher = utils.arr_vector_one_to_two(8, patcher).map(
+            bit_arr => bit_arr.join("")
+        )
+        let mask_bin_arr = [...temp_mask_bin_arr, ...patcher]
+        let mask = utils.address_joiner(mask_bin_arr.map(
+            fragment => utils.bin2dec(fragment)
+        ))
+        
+        let c = calc_the_num_of_subnets_and_its_network_address(ip, mask)[1]
+
+        c = c.map(
+            obj => {
+                return {
+                    mask,
+                    serial_num: obj.serial_num,
+                    the_scale_of_host_address: obj.cur_subnet_network_address,
+                }
+            }
+        )
+
+        final_results[1] = c
+        return final_results
+    }
     // ========================== 路由4: 子网划分 ==============================
 }
