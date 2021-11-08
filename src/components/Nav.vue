@@ -4,7 +4,7 @@
             :index="nav.index"
             v-for="nav in navs"
             :key="nav.index"
-            :class="{ hello_page_style: nav.index === 'helloPage' }"
+            :class="{ hello_page_style: nav.index === '/helloPage' }"
         >
             {{ nav.title }} 
             <span style="color: red;">{{ nav.subtitle }}</span>

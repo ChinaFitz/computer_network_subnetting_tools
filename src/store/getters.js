@@ -319,5 +319,17 @@ export default {
 
     // ========================== 路由4: 子网划分 ==============================
     
+    // ========================== 问题1: 根据ip、子网掩码求网络地址
+    type1_network_address(state, getters) {
+        let {ip_address, subnet_mask} = state
+        let {calc_network_address} = getters
+        return [
+            {
+                ip: ip_address,
+                mask: subnet_mask,
+                network_address: calc_network_address(ip_address, subnet_mask),
+            },
+        ]
+    },
     // ========================== 路由4: 子网划分 ==============================
 }

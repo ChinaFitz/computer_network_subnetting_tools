@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id="miss_subnet_type" v-if="subnet_type === '0'">
-            <el-empty description="请在上一步中选择一种问题类型"></el-empty>
+            <el-empty description="请在步骤1中选择一种问题类型"></el-empty>
             <el-button style="margin-top: 12px;" @click="pre">上一步</el-button>
         </div>
 
