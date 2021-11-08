@@ -41,9 +41,6 @@
                 }
             }
 
-
-
-
             function patchZero(bin) {
                 let bin_arr = bin.split('')
                 let len = bin_arr.length
@@ -58,32 +55,27 @@
                 return bin_arr.join('')
             }
 
-
-
-
             function dec2bin(dec_String) {
                 let target
                 let bin_string = ''
                 let result = []
-                
+
                 if (judgeType(dec_String) === 'Number') {
                     target = dec_String
                 } else {
                     target = Number(dec_String)
                 }
 
-                if (Number.isNaN(target) || judgeType(target) === "Undefined") {
+                if (Number.isNaN(target) || judgeType(target) === 'Undefined') {
                     target = 0
                     result.push(target)
                 }
-                
 
                 while (target !== 0) {
                     let remainder = target % 2
                     target = parseInt(target / 2)
                     result.unshift(remainder)
                 }
-            
 
                 result.forEach(digit => {
                     bin_string += digit
@@ -91,10 +83,20 @@
 
                 return bin_string
             }
-
         </script>
 
         <script>
+            function vector(num, arr) {
+                let result = []
+                while (arr.length > 0) {
+                    let v = arr.splice(0, num)
+                    result.push(v)
+                }
+                return result
+            }
+
+            // console.log([1,2].splice(0, 50))
+            console.log(vector(3, ['1', '2']))
             
         </script>
     </body>

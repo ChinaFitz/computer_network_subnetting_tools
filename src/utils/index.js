@@ -16,6 +16,8 @@ import host_number_in_bin from "./subnet_related/host_number_in_bin"
 import AND_operation from "./AND_operation"
 import host_address_dec from "./subnet_related/host_address_dec"
 import throttle from "./throttle"
+import bit_combination_generator from "./bit_combination_generator"
+import arr_vector_one_to_two from "./array_vector/one_to_tow"
 
 export default {
     bin2dec,
@@ -36,4 +38,6 @@ export default {
     AND_operation,
     host_address_dec,
     throttle,
+    bit_combination_generator,
+    arr_vector_one_to_two,
 }

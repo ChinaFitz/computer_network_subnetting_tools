@@ -13,7 +13,24 @@
         </div>
 
         <div id="type2" v-else-if="subnet_type === '2'">
-            2号问题
+            <el-table
+                :data="type2_dataTable[0]"
+                border stripe 
+                style="width: 100%"
+                :header-cell-style="{backgroundColor: '#ffeead', color: '#d9534f'}"
+            >
+                <el-table-column prop="ip" label="分配到的网络ip" width="180" align="center"></el-table-column>
+                <el-table-column prop="mask" label="子网掩码" width="180" align="center"></el-table-column>
+            </el-table>
+
+            <el-table
+                :data="type2_dataTable[1]"
+                border stripe 
+                style="width: 100%"
+            >
+                <el-table-column prop="serial_num" label="子网序号" width="180" align="center"></el-table-column>
+                <el-table-column prop="cur_subnet_network_address" label="该子网的网络地址" width="180" align="center"></el-table-column>
+            </el-table>
         </div>
 
         <div id="type3" v-else-if="subnet_type === '3'">
@@ -47,7 +64,11 @@
         },
         computed: {
             ...mapState(['subnet_type']),
-            ...mapGetters(['type1_network_address']),
+            ...mapGetters([
+                'type1_network_address',
+                'type2_dataTable',
+                "tt"
+                ]),
         },
         methods: {
             pre() {
@@ -60,5 +81,11 @@
 <style lang="less" scoped>
     .conditions_group {
         display: block;
+    }
+
+    #type2 {
+        .el-table {
+            margin: 40px auto;
+        }
     }
 </style>
