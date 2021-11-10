@@ -20,6 +20,7 @@ import bit_combination_generator from "./bit_combination_generator"
 import arr_vector_one_to_two from "./array_vector/one_to_two"
 import calc_host_address from "./the_scale_of_host_address"
 import required_bits_for_subnets_from_host_nums from "./subnet_related/required_bits_for_subnets"
+import array_remove_duplicates from "./pretty/array_remove_duplicates"
 
 export default {
     bin2dec,
@@ -44,4 +45,5 @@ export default {
     arr_vector_one_to_two,
     calc_host_address,
     required_bits_for_subnets_from_host_nums,
+    array_remove_duplicates,
 }
