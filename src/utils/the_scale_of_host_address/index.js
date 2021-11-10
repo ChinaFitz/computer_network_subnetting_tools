@@ -1,7 +1,7 @@
 /*
     @author:  Fitz
     @name:  calc_host_address
-    @description:  根据(网络)ip地址计算出主机地址范围
+    @description:  根据(网络)ip地址和子网号位数计算出主机地址范围
     @parms:  String 十进制(网络)ip地址    Number 子网号位数
     @return:  String 主机地址范围  示例: "192.168.1.0 ~ 192.168.1.255"
 */
@@ -14,7 +14,7 @@ import dec_ip_address from "../ip_related/dec_ip_address"
 import joiner from "../pretty/joiner"
 
 
-export default function(ip, required_bit) {
+export default function(ip, required_bits_for_subnet) {
 
     let ipClass = ipClassifier(ip)
     let bin_ip_address_arr = spliter(bin_ip_address(ip))
@@ -31,7 +31,7 @@ export default function(ip, required_bit) {
             let cur_fragment_arr = cur_fragment.split("")
             cur_fragment_arr = cur_fragment_arr.map(
                 (bit, index) => {
-                    if (index >= required_bit) {
+                    if (index >= required_bits_for_subnet) {
                         bit = "1"
                     }
                     return bit

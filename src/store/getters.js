@@ -1,5 +1,6 @@
 import utils from '../utils'
 import { Message } from 'element-ui'
+import Vue from "vue"
 
 export default {
     // ======================= 路由1: 判断ip地址类型 ========================
@@ -482,6 +483,146 @@ export default {
 
         final_results[1] = c
         return final_results
-    }
+    },
+
+    // ================================= 问题4: 已知网络IP地址、每个子网的需要容纳的主机数求每个子网的子网掩码、主机地址范围 ===================================
+
+    /*
+        @author:  Fitz
+        @name:  calc_mask
+        @description:  根据十进制ip地址和子网号位数
+        @parms:  String ip地址(十进制)    Number 子网号位数
+        @return:  String 子网掩码
+    */
+    calc_mask() {
+        return function(ip_address, required_bit) {
+
+            const ipClass = utils.ipClassifier(ip_address)
+            let {mask, flag} = utils.standard_mask[ipClass]
+            // 子网掩码计算结果将基于这个变量进行修改
+            let temp_mask_bin_arr = utils.address_spliter(utils.bin_ip_address(mask))
+            temp_mask_bin_arr.splice(flag)
+
+            var patcher = []
+            for (let i = 0; i < required_bit; i++) {
+                patcher.push("1")
+            }
+            
+            while ((4 - temp_mask_bin_arr.length) * 8 !== patcher.length) {
+                patcher.push("0")
+            }
+
+            patcher = utils.arr_vector_one_to_two(8, patcher).map(
+                bit_arr => bit_arr.join("")
+            )
+            let mask_bin_arr = [...temp_mask_bin_arr, ...patcher]
+
+            // 计算出的满足当前所需子网下的子网掩码
+            let mask_after_calc = utils.address_joiner(mask_bin_arr.map(
+                fragment => utils.bin2dec(fragment)
+            ))
+
+            return mask_after_calc
+        }
+    },
+
+    type4_dataTable (state, getters) {
+
+        try {
+            // 最终结果都保存在该容器中
+            let final_results = []
+
+            let { ip_address, hosts_num_in_each_subnet } = state
+            let { calc_mask, calc_the_num_of_subnets_and_its_network_address } = getters
+            // ip类型
+            let ipClass = utils.ipClassifier(ip_address)
+            // 该ip类型下子网号开始操作的位置
+            let {flag} = utils.standard_mask[ipClass]
+            // 每个子网需要容纳的主机数 -- 数组
+            let hosts_num_in_each_subnet_arr = JSON.parse(hosts_num_in_each_subnet)
+            // 满足每个子网容纳的主机数需要的子网号位数 -- 数组
+            let bits_of_subnet_Arr = hosts_num_in_each_subnet_arr.map(
+                host_num => utils.required_bits_for_subnets_from_host_nums(ipClass, host_num)
+            )
+
+            bits_of_subnet_Arr.forEach(
+                (num_of_subnets_bits, index) => {
+                    let r = {}
+
+                    // 计算出正确的子网掩码(满足子网数和每个子网需要能够容纳的主机数)
+                    let mask = calc_mask(ip_address, num_of_subnets_bits)
+
+                    let network_addresses_container = calc_the_num_of_subnets_and_its_network_address(ip_address, mask)[1]
+                    let cur_network_address = network_addresses_container[index]["cur_subnet_network_address"]
+
+                    // 每个子网的序号
+                    r.serial_num = index + 1
+                    // 每个子网的子网掩码
+                    r.mask = mask
+                    // 每个子网的主机地址范围
+                    r.the_scale_of_host_address = utils.calc_host_address(cur_network_address, num_of_subnets_bits)
+                    final_results.push(r)
+                }
+            )
+
+            // ========================= 修复子网掩码不同导致的主机地址范围重叠bug =================
+            
+            // 主机地址范围结果集
+            let the_scale_of_host_address_Arr = []
+            
+            for (let i = 0, len = final_results.length; i < len; i++) {
+                const subnet = final_results[i]
+                let scale = subnet.the_scale_of_host_address
+                the_scale_of_host_address_Arr.push(scale.split(" ~ "))
+            }
+
+
+            // 开始修复
+            let repair = the_scale_of_host_address_Arr.map(
+                (scale_arr, index, thisArr) => {
+                    let end = utils.address_spliter(scale_arr[1])
+
+                    let lastest_pos = end[flag]
+                    if (index !== (thisArr.length-1)) {
+                        let next_subnet = thisArr[index+1]
+                        let start = utils.address_spliter(next_subnet[0])
+                        let end = utils.address_spliter(next_subnet[1])
+                        // 计算出间隔
+                        const gap = end[flag] - start[flag]
+                        start[flag] = +lastest_pos + 1
+                        end[flag] = +lastest_pos + 1 + gap
+
+                        next_subnet[0] = utils.address_joiner(start)
+                        next_subnet[1] = utils.address_joiner(end)
+
+                    }
+                    return scale_arr.join(" ~ ")
+                }
+            )
+
+
+            repair.forEach(
+                (scale, index) => {
+                    Vue.set(final_results, index, {
+                        serial_num: final_results[index].serial_num,
+                        mask: final_results[index].mask,
+                        the_scale_of_host_address: scale,
+                    })
+                }
+            )
+            // ========================= 修复子网掩码不同导致的主机地址范围重叠bug =================
+            
+            return final_results
+
+        } catch (error) {
+            Message({
+                message: '请仔细检查ip地址和子网掩码是否有错误!',
+                type: 'error',
+                duration: 1500,
+            })
+            console.log(error)
+            return
+        }
+    },
     // ========================== 路由4: 子网划分 ==============================
 }

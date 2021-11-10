@@ -57,7 +57,38 @@
         </div>
 
         <div id="type4" v-else-if="subnet_type === '4'">
-            4号问题
+
+            <div id="type4_info">
+                <el-table
+                :data="table_datas_from_hosts_num_in_each_subnet[0]"
+                border stripe 
+                style="width: 100%"
+                :header-cell-style="{backgroundColor: '#ffeead', color: '#d9534f'}"
+                >
+                    <el-table-column prop="ip" label="分配到的网络ip" align="center"></el-table-column>
+                </el-table>
+
+                <el-table
+                :data="table_datas_from_hosts_num_in_each_subnet[1]"
+                border stripe 
+                style="width: 100%"
+                :header-cell-style="{backgroundColor: '#ffeead', color: '#d9534f'}"
+                >
+                    <el-table-column prop="serial_num" label="子网序号" align="center"></el-table-column>
+                    <el-table-column prop="required_host_num" label="要求当前子网能够容纳的主机数" align="center"></el-table-column>
+                </el-table>
+            </div>
+
+            <el-table
+                :data="type4_dataTable"
+                border stripe 
+                style="width: 100%"
+                :header-cell-style="{color: 'rgb(224, 44, 44)'}"
+            >
+                <el-table-column prop="serial_num" label="子网序号" width="180" align="center"></el-table-column>
+                <el-table-column prop="mask" label="子网掩码" width="180" align="center"></el-table-column>
+                <el-table-column prop="the_scale_of_host_address" label="主机地址范围(第一个地址可做该子网的网络地址)" width="325" align="center"></el-table-column>
+            </el-table>
         </div>
 
 
@@ -74,7 +105,6 @@
 
 <script>
     import { mapState, mapGetters } from 'vuex'
-    import utils from '../../utils'
 
     export default {
         name: 'Process3', // 指定组件名
@@ -84,12 +114,39 @@
             }
         },
         computed: {
-            ...mapState(['subnet_type']),
+            ...mapState([
+                'ip_address',
+                'subnet_type',
+                'hosts_num_in_each_subnet',
+            ]),
             ...mapGetters([
                 'type1_network_address',
                 'type2_dataTable',
-                "type3_dataTable"
-                ]),
+                "type3_dataTable",
+                "type4_dataTable",
+            ]),
+
+            table_datas_from_hosts_num_in_each_subnet() {
+                
+                const hosts_num_in_each_subnet = JSON.parse(this.hosts_num_in_each_subnet)
+                const ip = this.ip_address
+
+                let source_table = [
+                    [
+                        {ip,},
+                    ],
+                ]
+
+                source_table[1] = hosts_num_in_each_subnet.map(
+                    (host_num, index) => {
+                        return {
+                            serial_num: index + 1,
+                            required_host_num: host_num,
+                        }
+                    }
+                )
+                return source_table
+            },
         },
         methods: {
             pre() {

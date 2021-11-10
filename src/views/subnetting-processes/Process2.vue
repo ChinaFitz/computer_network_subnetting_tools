@@ -6,6 +6,23 @@
         </div>
 
         <div id="required_conditions" v-else>
+            
+            <div id="notice" v-if="subnet_type === '4'">
+                <span>如果只知道子网中最大的主机数, 则尝试每个子网都填入该数或依次减少其他子网的主机数</span>
+                <br />
+                <br />
+                
+                <span style="color: rgb(65,184,131); font-weight: bold; font-size: 17px;">
+                    例如: 有3个地方要用网络, 最多主机的地方总共有16台, 则可以是[16, 16, 16] 或 [16, 12, 10]
+                </span>
+                
+                <br />
+                <br />
+                <span style="color: red; font-weight: bold; font-size: 25px;"
+                    >这个工具支持因为子网不能容下所需的主机数而导致需要子网再划分的情况!!!</span
+                >
+            </div>
+            
             <div class="conditions_group">
                 <span>IP地址(仅支持十进制):</span>
                 <el-input
@@ -51,6 +68,18 @@
                 ></el-input>
             </div>
 
+            <div class="conditions_group" v-else>
+                <span>每个子网的需容纳的主机数( 传值方式示例: [6, 24, 16, 32, 29] ):</span>
+                <el-input
+                    type="text"
+                    placeholder="每个子网的需容纳的主机数"
+                    v-model="hosts_num_in_each_subnet"
+                    :clearable="true"
+                    size="small"
+                    :style="{ marginLeft: '21px', width: '200px' }"
+                ></el-input>
+            </div>
+
             <div class="conditions_group">
                 <el-button style="margin-top: 12px;" @click="pre">上一步</el-button>
                 <el-button style="margin-top: 12px;" v-if="subnet_type" @click="next()">下一步</el-button>
@@ -60,8 +89,8 @@
 </template>
 
 <script>
-    import utils from "../../utils"
-    import {mapState} from "vuex"
+    import utils from '../../utils'
+    import { mapState } from 'vuex'
 
     export default {
         name: 'Process2', // 指定组件名
@@ -69,10 +98,7 @@
             return {}
         },
         computed: {
-            ...mapState([
-                "subnet_type",
-                "binOrdec",
-            ]),
+            ...mapState(['subnet_type', 'binOrdec', 'hosts_num_in_each_subnet']),
 
             ip_address: {
                 get() {
@@ -150,16 +176,16 @@
                 },
                 set(num) {
                     // 清空
-                    if (num === "") {
-                        this.$store.state.required_subnets_num = ""
-                    }else if (num < 1){
+                    if (num === '') {
+                        this.$store.state.required_subnets_num = ''
+                    } else if (num < 1) {
                         this.$store.state.required_subnets_num = 1
-                        alert("所需子网数要大于等于1")
-                    }else {
+                        alert('所需子网数要大于等于1')
+                    } else {
                         this.$store.state.required_subnets_num = num
                     }
-                }
-            }
+                },
+            },
         },
         methods: {
             // 子网掩码自动填充用
@@ -186,7 +212,7 @@
             next() {
                 // this.$store.state.active = 2     // subnetting.vue中加入了url path监听, 所以不再需要
                 if (!this.ip_address || !this.required_subnets_num) {
-                    alert("请检查是否漏掉必要的两个条件")
+                    alert('请检查是否漏掉必要的两个条件')
                     return
                 }
                 this.$router.push({ name: 'Process3' })
@@ -204,5 +230,12 @@
             display: block;
             margin: 20px auto;
         }
+    }
+
+    #notice {
+        margin: 50px auto;
+        padding: 15px;
+        border: 1px solid rgb(150, 145, 145);
+        box-shadow: 7px -5px 10px 0px gray;
     }
 </style>

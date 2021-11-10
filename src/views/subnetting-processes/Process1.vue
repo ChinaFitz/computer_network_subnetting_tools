@@ -4,7 +4,7 @@
             <el-radio v-model="subnet_type" label="1" border>已知IP地址、子网掩码<span class="need_to_calc">求网络地址</span></el-radio>
             <el-radio v-model="subnet_type" label="2" border>已知网络IP地址、子网掩码<span class="need_to_calc">求可划分的子网数和每个子网的子网号</span></el-radio>
             <el-radio v-model="subnet_type" label="3" border>已知网络IP地址、所需子网个数<span class="need_to_calc">求每个子网的子网掩码及对应的主机地址范围</span></el-radio>
-            <el-radio v-model="subnet_type" label="4" border>已知网络IP地址、每个子网的需要容纳的主机数<span class="need_to_calc">求每个子网的子网掩码、对应的主机地址范围</span></el-radio>
+            <el-radio v-model="subnet_type" label="4" border>已知网络IP地址、每个子网的需要容纳的主机数<span class="need_to_calc">求每个子网的子网掩码、主机地址范围</span></el-radio>
         </div>
         <el-button style="margin-top: 12px;" @click="next(subnet_type)">下一步</el-button>
     </div>
