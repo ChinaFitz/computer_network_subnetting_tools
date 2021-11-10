@@ -20,9 +20,7 @@
 
         <br />
 
-        <span style="margin-right: 20px;">
-            子网掩码(仅支持十进制):
-        </span>
+        <span style="margin-right: 20px;"> 子网掩码(仅支持十进制): </span>
         <el-autocomplete
             class="inline-input"
             v-model="subnet_mask"
@@ -38,16 +36,15 @@
 
         <div id="details">
             <el-descriptions :column="1" border>
-                
                 <el-descriptions-item
-                    v-for="(item, index) in details" :key="index"
+                    v-for="(item, index) in details"
+                    :key="index"
                     :labelStyle="{ 'text-align': 'center', 'background-color': index%2===0?'#E1F3D8':'#DCDCDC', 'font-size': '14px', 'color': 'black' }"
                     :contentStyle="{ 'text-align': 'center', 'background-color': index%2===0?'#E1F3D8':'#DCDCDC', 'font-size': '14px', 'color': 'black' }"
                     :label="item.label"
                 >
                     {{ item.result }}
                 </el-descriptions-item>
-            
             </el-descriptions>
         </div>
     </div>

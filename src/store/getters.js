@@ -255,7 +255,7 @@ export default {
 
     // ======================= 路由3: 判断两个ip是否属于同一个网络 ======================
     calc_network_address() {
-        return function(ip_address, subnet_mask) {
+        return function (ip_address, subnet_mask) {
             try {
                 if (ip_address === '' || subnet_mask === '') return
 
@@ -318,7 +318,7 @@ export default {
                     ]
     */
     calc_the_num_of_subnets_and_its_network_address() {
-        return function(ip_address, subnet_mask) {
+        return function (ip_address, subnet_mask) {
             try {
                 if (ip_address === '' || subnet_mask === '') return
 
@@ -484,7 +484,7 @@ export default {
         @return:  String 子网掩码
     */
     calc_mask() {
-        return function(ip_address, required_bit) {
+        return function (ip_address, required_bit) {
             const ipClass = utils.ipClassifier(ip_address)
             let { mask, flag } = utils.standard_mask[ipClass]
             // 子网掩码计算结果将基于这个变量进行修改

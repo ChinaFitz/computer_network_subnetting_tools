@@ -17,5 +17,5 @@ export default function (bin) {
         bin_arr.unshift('0')
         len = bin_arr.length
     }
-    return bin_arr.join("")
+    return bin_arr.join('')
 }

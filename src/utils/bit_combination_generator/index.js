@@ -26,7 +26,6 @@
 
 // 该算法下: 极限支持位数n为23, 平均计算时间: 6~8s   体验较好的计算位数n为20
 
-
 export default function (n) {
     var result = []
     function bit_combination_generator(n, arr = [], i = 0) {

@@ -6,7 +6,7 @@
     @return:  Object 旧版可用子网数 和 新版下的可用子网数
 */
 
-export default function(bits_of_subnet) {
+export default function (bits_of_subnet) {
     if (bits_of_subnet < 1) {
         return {
             old_router: 0,

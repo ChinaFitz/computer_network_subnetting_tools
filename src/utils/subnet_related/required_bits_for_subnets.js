@@ -11,16 +11,15 @@ export default function (ipClass, require_host_nums) {
     let origin_host_bits
 
     switch (ipClass) {
-        case "A":
+        case 'A':
             origin_host_bits = 24
             break
-        case "B":
+        case 'B':
             origin_host_bits = 16
             break
-        case "C":
+        case 'C':
             origin_host_bits = 8
             break
-       
     }
     // 满足需要容纳的主机数时, 主机号的位数为
     let host_bits = Math.ceil(Math.log2(require_host_nums))

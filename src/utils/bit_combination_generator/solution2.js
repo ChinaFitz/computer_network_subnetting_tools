@@ -6,10 +6,9 @@
     @return:  Array
 */
 
-
 // 这种解法更容易理解
 
-export default function(bits) {
+export default function (bits) {
     let result = []
 
     if (bits === 1) {

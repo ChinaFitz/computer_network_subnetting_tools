@@ -7,5 +7,5 @@
 */
 
 export default function (origin) {
-    return origin.join(".")
+    return origin.join('.')
 }

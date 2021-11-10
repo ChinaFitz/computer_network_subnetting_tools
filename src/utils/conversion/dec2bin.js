@@ -6,7 +6,7 @@ import judgeType from '../judgeType'
     @parms:  String
     @return:  String
 */
-export default function(dec_String) {
+export default function (dec_String) {
     let target
     let bin_string = ''
     let result = []

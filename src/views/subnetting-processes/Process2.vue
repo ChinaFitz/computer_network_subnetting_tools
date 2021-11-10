@@ -6,23 +6,22 @@
         </div>
 
         <div id="required_conditions" v-else>
-            
             <div id="notice" v-if="subnet_type === '4'">
                 <span>如果只知道子网中最大的主机数, 则尝试每个子网都填入该数或依次减少其他子网的主机数</span>
                 <br />
                 <br />
-                
+
                 <span style="color: rgb(65,184,131); font-weight: bold; font-size: 17px;">
                     例如: 有3个地方要用网络, 最多主机的地方总共有16台, 则可以是[16, 16, 16] 或 [16, 12, 10]
                 </span>
-                
+
                 <br />
                 <br />
                 <span style="color: red; font-weight: bold; font-size: 25px;"
                     >这个工具支持因为子网不能容下所需的主机数而导致需要子网再划分的情况!!!</span
                 >
             </div>
-            
+
             <div class="conditions_group">
                 <span>IP地址(仅支持十进制):</span>
                 <el-input
@@ -39,9 +38,7 @@
             </div>
 
             <div class="conditions_group" v-if="subnet_type === '1' || subnet_type === '2'">
-                <span style="margin-right: 20px;">
-                    子网掩码(仅支持十进制):
-                </span>
+                <span style="margin-right: 20px;"> 子网掩码(仅支持十进制): </span>
                 <el-autocomplete
                     class="inline-input"
                     v-model="subnet_mask"

@@ -9,7 +9,12 @@
 
         <div id="main">
             <div id="switch">
-                <el-switch v-model="binOrdec" inactive-text="十进制" active-text="二进制" active-color="#ff4949"></el-switch>
+                <el-switch
+                    v-model="binOrdec"
+                    inactive-text="十进制"
+                    active-text="二进制"
+                    active-color="#ff4949"
+                ></el-switch>
             </div>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <label for="ip">ip地址: </label>
@@ -53,15 +58,15 @@
                         this.$store.state.ip_address = val
                         return
                     }
-                    
+
                     const reg = /(\.|[0-9]){1}/ig
                     let str_len = val.length
-                    
+
                     if( reg.test(val[str_len-1]) ) {
                         if (val.endsWith(".", str_len-1) && val.endsWith(".")) return   // 不能输入两次. 例如: 192..168
                         this.$store.state.ip_address = val
                     }
-                    
+
                     // 十进制下, ip输入不能出现超过255的情况
                     if (!this.binOrdec) {
                         utils.address_spliter(val).forEach(

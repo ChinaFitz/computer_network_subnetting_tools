@@ -1,4 +1,4 @@
-import utils from "../index"
+import utils from '../index'
 
 /*
     @author:  Fitz
@@ -8,11 +8,9 @@ import utils from "../index"
     @return:  String 十进制ip地址
 */
 export default function (bin_ip) {
-    let dec_ip_address_array = utils.address_spliter(bin_ip).map(
-        fragment => {
-            return utils.bin2dec(fragment)
-        }
-    )
+    let dec_ip_address_array = utils.address_spliter(bin_ip).map(fragment => {
+        return utils.bin2dec(fragment)
+    })
     let dec_ip_address = utils.address_joiner(dec_ip_address_array)
     return dec_ip_address
 }

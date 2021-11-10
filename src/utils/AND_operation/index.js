@@ -6,14 +6,14 @@
     @return:  String 网络号/网络地址(2进制)
 */
 
-import spliter from "../pretty/spliter"
-import joiner from "../pretty/joiner"
+import spliter from '../pretty/spliter'
+import joiner from '../pretty/joiner'
 
-export default function(ip_bin, mask_bin) {
+export default function (ip_bin, mask_bin) {
     let ip_bin_arr = spliter(ip_bin)
     let mask_bin_arr = spliter(mask_bin)
     let fin = []
-    
+
     for (let i = 0, len = ip_bin_arr.length; i < len; i++) {
         let ip_bit_arr = []
         let mask_bit_arr = []

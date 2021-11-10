@@ -6,11 +6,10 @@
     @return:  Number 主机号位数
 */
 
-import standard_host_number from "../ip_related/standard_host_number"
-import bits_of_subnet from "./bits_of_subnet"
+import standard_host_number from '../ip_related/standard_host_number'
+import bits_of_subnet from './bits_of_subnet'
 
-
-export default function (ipClass, mask){
+export default function (ipClass, mask) {
     let num1 = bits_of_subnet(ipClass, mask)
     let num2 = standard_host_number(ipClass)
 

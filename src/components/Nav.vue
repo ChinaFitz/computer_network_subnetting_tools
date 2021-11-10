@@ -6,7 +6,7 @@
             :key="nav.index"
             :class="{ hello_page_style: nav.index === '/helloPage' }"
         >
-            {{ nav.title }} 
+            {{ nav.title }}
             <span style="color: red;">{{ nav.subtitle }}</span>
         </el-menu-item>
     </el-menu>

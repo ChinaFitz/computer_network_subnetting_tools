@@ -6,7 +6,7 @@
     @return:  Array
 */
 
-export default function(num, arr) {
+export default function (num, arr) {
     let result = []
     while (arr.length > 0) {
         let v = arr.splice(0, num)

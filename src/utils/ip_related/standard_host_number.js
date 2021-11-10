@@ -6,14 +6,13 @@
     @return:  Number 主机号位数
 */
 
-
-export default function (ipClass){
+export default function (ipClass) {
     switch (ipClass) {
-        case "A":
+        case 'A':
             return 24
-        case "B":
+        case 'B':
             return 16
-        case "C":
+        case 'C':
             return 8
         default:
             return

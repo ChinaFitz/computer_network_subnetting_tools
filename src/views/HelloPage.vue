@@ -4,7 +4,11 @@
         <div>Author: ChinaFitz</div>
         <div>
             <span>个人前端学习博客: </span>
-            <el-link type="primary" href="https://www.cnblogs.com/fitzlovecode/" style="font-size: 16px; font-weight: bold;">
+            <el-link
+                type="primary"
+                href="https://www.cnblogs.com/fitzlovecode/"
+                style="font-size: 16px; font-weight: bold;"
+            >
                 博客园
             </el-link>
         </div>
@@ -23,18 +27,16 @@
     </div>
 </template>
 
-
 <script>
 
     export default {
         name: "HelloPage", // 指定组件名
         data: function () {
             return {
-                
+
             }
         }
     }
-
 </script>
 
 <style lang="less" scoped>

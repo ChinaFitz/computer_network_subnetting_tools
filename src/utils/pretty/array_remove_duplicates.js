@@ -6,6 +6,6 @@
     @return:  Array 去重后的数组
 */
 
-export default function(arr) {
+export default function (arr) {
     return new Array(...new Set(arr))
 }

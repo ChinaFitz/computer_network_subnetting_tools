@@ -7,5 +7,5 @@
 */
 
 export default function (origin) {
-    return origin.split(".")
+    return origin.split('.')
 }

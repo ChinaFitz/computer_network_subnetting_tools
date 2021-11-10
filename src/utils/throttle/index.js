@@ -6,11 +6,10 @@
     @return:  Function
 */
 
-
-export default function(cb, time, timer_saver, ...args) {
+export default function (cb, time, timer_saver, ...args) {
     let isLocked = false
     let args_for_cb = Array.prototype.slice.call(arguments, 3)
-    return function() {
+    return function () {
         if (!isLocked) {
             let result = cb.apply(this, args_for_cb)
             isLocked = true

@@ -1,9 +1,6 @@
 <template>
-    <div>
-        NetConfigGen
-    </div>
+    <div>NetConfigGen</div>
 </template>
-
 
 <script>
 
@@ -11,13 +8,10 @@
         name: "NetConfigGen", // 指定组件名
         data: function () {
             return {
-                
+
             }
         }
     }
-
 </script>
 
-<style lang="less" scoped>
-    
-</style>
+<style lang="less" scoped></style>
