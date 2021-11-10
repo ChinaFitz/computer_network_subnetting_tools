@@ -45,7 +45,7 @@
                     {
                         index: '/netConfigGen',
                         title: '局域网配置生成器',
-                        subtitle: '',
+                        subtitle: '(正在开发中...)',
                     },
                 ],
             }
