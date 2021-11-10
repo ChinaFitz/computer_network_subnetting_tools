@@ -218,19 +218,11 @@ export default {
     // 12. 主机地址范围(10进制)
     host_address_dec(state, getters) {
         try {
-            let { ip_address, subnet_mask, binOrdec, throttle_timer } = state
-            let { network_address_dec } = getters
-            if (ip_address === '' || subnet_mask === '') return
 
-            let cb_after_throttle = utils.throttle(
-                utils.host_address_dec,
-                1500,
-                throttle_timer,
-                network_address_dec,
-                binOrdec
-            )
-            let { from: begin, to: end } = cb_after_throttle()
-            return `${begin} ~ ${end}`
+            let { ip_address } = state
+            let {bits_of_subnet} = getters
+
+            return utils.calc_host_address(ip_address, bits_of_subnet)
         } catch (error) {
             Message({
                 message: '请仔细检查ip地址和子网掩码是否有错误!',
@@ -243,20 +235,14 @@ export default {
     // 13. 主机地址范围(2进制)
     host_address_bin(state, getters) {
         try {
-            let { ip_address, subnet_mask, binOrdec, throttle_timer } = state
-            let { network_address_dec } = getters
-            if (ip_address === '' || subnet_mask === '') return
 
-            let cb_after_throttle = utils.throttle(
-                utils.host_address_dec,
-                1500,
-                throttle_timer,
-                network_address_dec,
-                binOrdec
-            )
-            let { from: begin, to: end } = cb_after_throttle()
+            let { host_address_dec } = getters
+            const start_and_end_Arr = host_address_dec.split(" ~ ")
+            let start = utils.bin_ip_address(start_and_end_Arr[0])
+            let end = utils.bin_ip_address(start_and_end_Arr[1])
 
-            return `${utils.bin_ip_address(begin)} ~ ${utils.bin_ip_address(end)}`
+            return `${start} ~ ${end}`
+
         } catch (error) {
             Message({
                 message: '请仔细检查ip地址和子网掩码是否有错误!',

@@ -3,7 +3,7 @@ export default {
     
     // ip_address: "130.161.30.0",
     ip_address: "200.161.30.0",
-    subnet_mask: "",
+    subnet_mask: "255.255.255.192",
     ip_address2: "", // <判断两ip是否属于同一个网络>路由专用
     subnet_mask2: "", // <判断两ip是否属于同一个网络>路由专用
     binOrdec: false,    // false为10进制, true为2进制
