@@ -18,6 +18,7 @@ import host_address_dec from "./subnet_related/host_address_dec"
 import throttle from "./throttle"
 import bit_combination_generator from "./bit_combination_generator"
 import arr_vector_one_to_two from "./array_vector/one_to_two"
+import calc_host_address from "./host_address"
 
 export default {
     bin2dec,
@@ -40,4 +41,5 @@ export default {
     throttle,
     bit_combination_generator,
     arr_vector_one_to_two,
+    calc_host_address,
 }

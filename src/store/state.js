@@ -1,7 +1,8 @@
 export default {
     // =============== 判断IP地址类型 ==============
     
-    ip_address: "133.161.30.0",
+    // ip_address: "130.161.30.0",
+    ip_address: "200.161.30.0",
     subnet_mask: "",
     ip_address2: "", // <判断两ip是否属于同一个网络>路由专用
     subnet_mask2: "", // <判断两ip是否属于同一个网络>路由专用
@@ -13,7 +14,7 @@ export default {
     active: 0,  // 子网划分的步骤条
     subnet_type: "3",  // 子网划分的问题类型, 总共有4种
     // required_subnets_num: 0,    // 所需子网数
-    required_subnets_num: 16,    // 所需子网数
+    required_subnets_num: 4,    // 所需子网数
     // ======================== 路由4(子网划分)  结束 ========================
 
     // =============== 判断IP地址类型 ==============

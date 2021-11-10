@@ -489,7 +489,7 @@ export default {
                 return {
                     mask,
                     serial_num: obj.serial_num,
-                    the_scale_of_host_address: obj.cur_subnet_network_address,
+                    the_scale_of_host_address: utils.calc_host_address(obj.cur_subnet_network_address, required_bit),
                 }
             }
         )
