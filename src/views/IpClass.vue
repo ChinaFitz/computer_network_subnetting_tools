@@ -72,6 +72,7 @@
                         utils.address_spliter(val).forEach(
                             fragment => {
                                 if (Number(fragment) > 255) {
+                                    this.$message.closeAll()
                                     this.$message({
                                         showClose: true,
                                         message: '请仔细检查ip地址 !!! ',

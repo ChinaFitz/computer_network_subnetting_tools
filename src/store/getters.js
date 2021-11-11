@@ -6,14 +6,17 @@ export default {
     // ======================= 路由1: 判断ip地址类型 ========================
     ipClass(state) {
         try {
-            let { ip_address, subnet_mask, binOrdec } = state
-            if (ip_address === '' || subnet_mask === '') return
+            let { ip_address, binOrdec } = state
+            if (ip_address === '') return
             return utils.ipClassifier(ip_address, binOrdec)
         } catch (e) {
+            // 如果之前有错误提示, 先清空, 让界面中永远只有一个错误提示弹框
+            Message.closeAll()
             Message({
                 message: '请仔细检查ip地址和子网掩码是否有错误!',
                 type: 'error',
-                duration: 1500,
+                duration: 1200,
+                showClose: true,
             })
             return
         }
@@ -35,10 +38,12 @@ export default {
                 return utils.bin_ip_address(ip_address)
             }
         } catch (error) {
+            Message.closeAll()
             Message({
                 message: '请仔细检查ip地址和子网掩码是否有错误!',
                 type: 'error',
-                duration: 1500,
+                duration: 1200,
+                showClose: true,
             })
             return
         }
@@ -53,10 +58,12 @@ export default {
             if (ip_address === '' || ipClass === undefined || subnet_mask === '') return
             return utils.bits_of_subnet(ipClass, subnet_mask)
         } catch (error) {
+            Message.closeAll()
             Message({
                 message: '请仔细检查ip地址和子网掩码是否有错误!',
                 type: 'error',
-                duration: 1500,
+                duration: 1200,
+                showClose: true,
             })
             return
         }
@@ -69,10 +76,12 @@ export default {
             if (bits_of_subnet === undefined) return 0
             return utils.num_of_subnet(bits_of_subnet)
         } catch (error) {
+            Message.closeAll()
             Message({
                 message: '请仔细检查ip地址和子网掩码是否有错误!',
                 type: 'error',
-                duration: 1500,
+                duration: 1200,
+                showClose: true,
             })
             return
         }
@@ -88,10 +97,12 @@ export default {
 
             return utils.bits_of_hosts(ipClass, subnet_mask)
         } catch (error) {
+            Message.closeAll()
             Message({
                 message: '请仔细检查ip地址和子网掩码是否有错误!',
                 type: 'error',
-                duration: 1500,
+                duration: 1200,
+                showClose: true,
             })
             return
         }
@@ -103,10 +114,12 @@ export default {
             let result = utils.address_spliter(getters.host_number_in_bin).map(fragment => utils.bin2dec(fragment))
             return utils.address_joiner(result)
         } catch (error) {
+            Message.closeAll()
             Message({
                 message: '请仔细检查ip地址和子网掩码是否有错误!',
                 type: 'error',
-                duration: 1500,
+                duration: 1200,
+                showClose: true,
             })
             return
         }
@@ -127,10 +140,12 @@ export default {
 
             return utils.host_number_in_bin(ip, mask)
         } catch (error) {
+            Message.closeAll()
             Message({
                 message: '请仔细检查ip地址和子网掩码是否有错误!',
                 type: 'error',
-                duration: 1500,
+                duration: 1200,
+                showClose: true,
             })
             return
         }
@@ -148,10 +163,12 @@ export default {
                 return 0
             }
         } catch (error) {
+            Message.closeAll()
             Message({
                 message: '请仔细检查ip地址和子网掩码是否有错误!',
                 type: 'error',
-                duration: 1500,
+                duration: 1200,
+                showClose: true,
             })
             return
         }
@@ -169,10 +186,12 @@ export default {
                 return 0
             }
         } catch (error) {
+            Message.closeAll()
             Message({
                 message: '请仔细检查ip地址和子网掩码是否有错误!',
                 type: 'error',
-                duration: 1500,
+                duration: 1200,
+                showClose: true,
             })
             return
         }
@@ -184,10 +203,12 @@ export default {
             let { network_address_bin } = getters
             return utils.dec_ip_address(network_address_bin)
         } catch (error) {
+            Message.closeAll()
             Message({
                 message: '请仔细检查ip地址和子网掩码是否有错误!',
                 type: 'error',
-                duration: 1500,
+                duration: 1200,
+                showClose: true,
             })
             return
         }
@@ -207,10 +228,12 @@ export default {
 
             return utils.AND_operation(ip_address, subnet_mask_arr)
         } catch (error) {
+            Message.closeAll()
             Message({
                 message: '请仔细检查ip地址和子网掩码是否有错误!',
                 type: 'error',
-                duration: 1500,
+                duration: 1200,
+                showClose: true,
             })
             return
         }
@@ -224,10 +247,12 @@ export default {
 
             return utils.calc_host_address(ip_address, bits_of_subnet)
         } catch (error) {
+            Message.closeAll()
             Message({
                 message: '请仔细检查ip地址和子网掩码是否有错误!',
                 type: 'error',
-                duration: 1500,
+                duration: 1200,
+                showClose: true,
             })
             return
         }
@@ -242,10 +267,12 @@ export default {
 
             return `${start} ~ ${end}`
         } catch (error) {
+            Message.closeAll()
             Message({
                 message: '请仔细检查ip地址和子网掩码是否有错误!',
                 type: 'error',
-                duration: 1500,
+                duration: 1200,
+                showClose: true,
             })
             return
         }
@@ -269,10 +296,12 @@ export default {
 
                 return network_address_dec
             } catch (error) {
+                Message.closeAll()
                 Message({
                     message: '请仔细检查ip地址和子网掩码是否有错误!',
                     type: 'error',
-                    duration: 1500,
+                    duration: 1200,
+                    showClose: true,
                 })
                 return
             }
@@ -396,10 +425,12 @@ export default {
 
                 return final_results
             } catch (error) {
+                Message.closeAll()
                 Message({
                     message: '请仔细检查ip地址和子网掩码是否有错误!',
                     type: 'error',
-                    duration: 1500,
+                    duration: 1200,
+                    showClose: true,
                 })
                 return
             }
@@ -596,12 +627,13 @@ export default {
             }
             return final_results
         } catch (error) {
+            Message.closeAll()
             Message({
                 message: '请仔细检查ip地址和子网掩码是否有错误!',
                 type: 'error',
-                duration: 1500,
+                duration: 1200,
+                showClose: true,
             })
-            console.log(error)
             return
         }
     },
