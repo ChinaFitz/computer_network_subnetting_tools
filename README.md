@@ -1,19 +1,7 @@
-# subnetting
+# 子网划分计算器
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+这个小工具可以辅助您在学习计算机网络时:
+1. 查看ip地址的分类
+2. 快速的转换ip地址的进制
+3. 判断两个ip是否属于同一个网络
+4. 快速解决常见的子网划分问题(有4类)
