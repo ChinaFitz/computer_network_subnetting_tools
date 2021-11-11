@@ -1,8 +1,8 @@
 <template>
-    <el-menu class="el-menu-demo" mode="horizontal" text-color="#409eff" active-text-color="#42b983" :router="true">
+    <el-menu class="el-menu-demo" mode="horizontal" text-color="#409eff" active-text-color="#42b983" :default-active="default_active" :router="true">
         <el-menu-item
-            :index="nav.index"
             v-for="nav in navs"
+            :index="nav.index"
             :key="nav.index"
             :class="{ hello_page_style: nav.index === '/helloPage' }"
         >
@@ -48,9 +48,22 @@
                         subtitle: '(正在开发中...)',
                     },
                 ],
+                default_active: "",
             }
         },
-        methods: {},
+        watch: {
+            $route: {
+                immediate: true,
+                handler(cur_route) {
+                    let index = cur_route.matched?.[0]?.path
+                    if (index) {
+                        this.default_active = index
+                    }else {
+                        this.$router.push({name: "HelloPage"})
+                    }
+                }
+            }
+        },
     }
 </script>
 
