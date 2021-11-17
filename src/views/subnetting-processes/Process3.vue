@@ -109,6 +109,7 @@
 
 <script>
     import { mapState, mapGetters } from 'vuex'
+    import { Message } from 'element-ui'
 
     export default {
         name: 'Process3', // 指定组件名
@@ -131,25 +132,35 @@
             ]),
 
             table_datas_from_hosts_num_in_each_subnet() {
+                try {
+                    const hosts_num_in_each_subnet = JSON.parse(this.hosts_num_in_each_subnet)
+                    const ip = this.ip_address
 
-                const hosts_num_in_each_subnet = JSON.parse(this.hosts_num_in_each_subnet)
-                const ip = this.ip_address
+                    let source_table = [
+                        [
+                            {ip,},
+                        ],
+                    ]
 
-                let source_table = [
-                    [
-                        {ip,},
-                    ],
-                ]
-
-                source_table[1] = hosts_num_in_each_subnet.map(
-                    (host_num, index) => {
-                        return {
-                            serial_num: index + 1,
-                            required_host_num: host_num,
+                    source_table[1] = hosts_num_in_each_subnet.map(
+                        (host_num, index) => {
+                            return {
+                                serial_num: index + 1,
+                                required_host_num: host_num,
+                            }
                         }
-                    }
-                )
-                return source_table
+                    )
+                    return source_table
+                } catch (error) {
+                    Message.closeAll()
+                    Message({
+                        message: '请仔细检查ip地址和子网主机数传入方式是否有错误!',
+                        type: 'error',
+                        duration: 1200,
+                        showClose: true,
+                    })
+                    return 0
+                }
             },
         },
         methods: {

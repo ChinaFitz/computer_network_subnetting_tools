@@ -9,9 +9,10 @@
         </div>
 
         <div id="figure">
-            <keep-alive>
+            <!-- <keep-alive>
                 <router-view></router-view>
-            </keep-alive>
+            </keep-alive> -->
+            <router-view></router-view>
         </div>
     </div>
 </template>

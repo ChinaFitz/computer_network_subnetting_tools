@@ -73,7 +73,7 @@
                     v-model="hosts_num_in_each_subnet"
                     :clearable="true"
                     size="small"
-                    :style="{ marginLeft: '21px', width: '200px' }"
+                    :style="{ marginLeft: '21px', width: '250px' }"
                 ></el-input>
             </div>
 
@@ -95,7 +95,7 @@
             return {}
         },
         computed: {
-            ...mapState(['subnet_type', 'binOrdec', 'hosts_num_in_each_subnet']),
+            ...mapState(['subnet_type', 'binOrdec']),
 
             ip_address: {
                 get() {
@@ -185,6 +185,19 @@
                     }
                 },
             },
+            hosts_num_in_each_subnet: {
+                get() {
+                    return this.$store.state.hosts_num_in_each_subnet
+                },
+                set(hosts_num_arr) {
+                    // 清空
+                    if (hosts_num_arr === '') {
+                        this.$store.state.hosts_num_in_each_subnet = ''
+                    }else {
+                        this.$store.state.hosts_num_in_each_subnet = hosts_num_arr
+                    }
+                },
+            }
         },
         methods: {
             // 子网掩码自动填充用
